@@ -16,10 +16,10 @@ var velocity = Vector2(0, 0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var x = get_parent().get_node("player").size
-	enemySize = rand_range(x - 0.7, x + 1.5)
+	enemySize = rand_range(x - 0.7, x + 2)
 	sprite.set_scale(Vector2(enemySize,enemySize))
 	collision.set_scale(Vector2(enemySize,enemySize))
-	
+	speed = enemySize * 50
 	enemyID = get_instance_id()
 	
 	# Generate random direction and time 
@@ -74,3 +74,7 @@ func _damage(damage):
 	
 	if enemySize < 0.5:
 		queue_free()
+
+
+func _on_lifeTimer_timeout():
+	queue_free()

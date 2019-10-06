@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+var sprintSpeed
+var sprinting = false
 var size = 1
 var shoot = 0
 var shootCooldown = 0
@@ -44,7 +46,10 @@ func get_input():
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 2
 		sprite.set_rotation(deg2rad(180))
-	velocity = velocity.normalized() * speed
+	if sprinting == false:
+		velocity = velocity.normalized() * speed
+	else:
+		velocity = velocity.normalized() * sprintSpeed
 	
 	
 	if Input.is_action_pressed('ui_accept') and shootCooldown == 0:
@@ -56,16 +61,22 @@ func get_input():
 			var pos = self.get_position()
 			playerShot.set_position(pos)
 			get_parent().add_child(playerShot)
+			playerShot.get_node("Sprite").set_scale(Vector2(size,size))
+			playerShot.get_node("CollisionShape2D").set_scale(Vector2(size,size))
 			playerShot.connect("playerShot", self, "_on_playerShot")
 			
 			shoot = shoot - 1
-	
+			get_parent().get_node("GUI/background/values/shootValue").set_text(str(shoot))
+			
+	sprintSpeed = speed * 2
 	if Input.is_action_pressed("ui_shift") and sprint > 0:
-		speed = 400
+		sprinting = true
 		sprint = sprint - 1
+		get_parent().get_node("GUI/background/values/sprintValue").set_text(str(sprint))
+		
 		print(sprint)
 	if Input.is_action_just_released("ui_shift") or sprint == 0:
-		speed = 200
+		sprinting = false
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
@@ -98,9 +109,11 @@ func _on_enemy_hit(enemySize, enemyID, enemyType):
 	_change_size(size)
 	
 	if enemyType == "shoot":
-		shoot = shoot + 10
+		shoot = shoot + 5
+		get_parent().get_node("GUI/background/values/shootValue").set_text(str(shoot))		
 	elif enemyType == "sprint":
-		sprint = sprint + 10
+		sprint = sprint + 20
+		get_parent().get_node("GUI/background/values/sprintValue").set_text(str(sprint))
 	
 	
 func _on_shot(damage):
@@ -114,16 +127,17 @@ func _change_size(x):
 	
 	var temp = (size)*10
 	if temp > score:
-		score = temp
-	get_node("score").set_text(str(score))
-	print("Score: ", score)
+		score = int(temp)
+	get_parent().get_node("GUI/background/values/scoreValue").set_text(str(score))
+	
+	speed = 200 * size
 	#var zoom = lerp($Camera2D.get_zoom(), Vector2(x,x), 0.5)
 	#$Camera2D.set_zoom(zoom)
 
 func _on_playerShot(enemyID):
 	shotTarget = enemyID
 	if enemyID != self.get_instance_id():
-		instance_from_id(enemyID)._damage(0.1)
+		instance_from_id(enemyID)._damage(size * 0.1)
 
 func _lerp(f, t, w):
 	return lerp(f, t, w)

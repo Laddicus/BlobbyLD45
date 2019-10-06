@@ -19,6 +19,7 @@ func _on_TextureButton_pressed():
 	
 	var next = next_resource.instance()
 	add_child(next)
+	next.get_node("GUI/background/values/highScoreValue").set_text(str(highScore))
 	
 	print("Pressed")
 
@@ -31,5 +32,7 @@ func _game_over(score):
 	
 	var next = next_resource.instance()
 	add_child(next)
+	next.get_node("values/highScoreValue").set_text(str(highScore))
+	next.get_node("values/scoreValue").set_text(str(score))
 	next.get_node("TextureButton").connect("pressed", next, "_on_TextureButton_pressed()")
 	print("gameover")

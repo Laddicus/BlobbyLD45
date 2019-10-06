@@ -13,10 +13,44 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_left = 335.909
-margin_top = 379.064
-margin_right = 660.909
-margin_bottom = 594.064
+margin_left = 256.597
+margin_top = 369.733
+margin_right = 771.597
+margin_bottom = 594.733
 texture_normal = ExtResource( 3 )
+
+[node name="values" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="highScore" type="Label" parent="values"]
+margin_right = 76.0
+margin_bottom = 14.0
+text = "High Score: "
+
+[node name="highScoreValue" type="Label" parent="values"]
+margin_left = 80.0
+margin_right = 88.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="MarginContainer" type="MarginContainer" parent="values"]
+margin_left = 92.0
+margin_right = 92.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="score" type="Label" parent="values"]
+margin_left = 96.0
+margin_right = 139.0
+margin_bottom = 14.0
+text = "Score: "
+
+[node name="scoreValue" type="Label" parent="values"]
+margin_left = 143.0
+margin_right = 151.0
+margin_bottom = 14.0
+text = "0"
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

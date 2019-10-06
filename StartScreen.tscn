@@ -15,10 +15,14 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="StartButton" type="TextureButton" parent="Title"]
-margin_left = 361.95
-margin_top = 388.55
-margin_right = 681.95
-margin_bottom = 578.55
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 320.15
+margin_top = 366.899
+margin_right = 711.15
+margin_bottom = 591.899
 texture_normal = ExtResource( 3 )
 
 [connection signal="pressed" from="Title/StartButton" to="." method="_on_TextureButton_pressed"]

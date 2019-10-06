@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://images/9patch.png" type="Texture" id=1]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="background" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 75 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 380, 215 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 26
+patch_margin_bottom = 25
+
+[node name="values" type="HBoxContainer" parent="background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -149.5
+margin_top = -20.0
+margin_right = 149.5
+margin_bottom = 20.0
+
+[node name="highScore" type="Label" parent="background/values"]
+margin_top = 13.0
+margin_right = 72.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "High Score:"
+
+[node name="highScoreValue" type="Label" parent="background/values"]
+margin_left = 76.0
+margin_top = 13.0
+margin_right = 84.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="score" type="Label" parent="background/values"]
+margin_left = 88.0
+margin_top = 13.0
+margin_right = 143.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "    Score:"
+
+[node name="scoreValue" type="Label" parent="background/values"]
+margin_left = 147.0
+margin_top = 13.0
+margin_right = 155.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="sprint" type="Label" parent="background/values"]
+margin_left = 159.0
+margin_top = 13.0
+margin_right = 216.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "    Sprint:"
+
+[node name="sprintValue" type="Label" parent="background/values"]
+margin_left = 220.0
+margin_top = 13.0
+margin_right = 228.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="shoot" type="Label" parent="background/values"]
+margin_left = 232.0
+margin_top = 13.0
+margin_right = 287.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "    Shots:"
+
+[node name="shootValue" type="Label" parent="background/values"]
+margin_left = 291.0
+margin_top = 13.0
+margin_right = 299.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+

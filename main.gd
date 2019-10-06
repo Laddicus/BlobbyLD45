@@ -34,3 +34,5 @@ func _on_spawnTimer_timeout():
 		enemySprint.set_position(pos)
 		self.add_child(enemySprint)
 		enemySprint.connect("hit", $player, "_on_enemy_hit")
+	if ($spawnTimer.get_wait_time() > 0.1):
+		$spawnTimer.set_wait_time($spawnTimer.get_wait_time() - 0.005)
