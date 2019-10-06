@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://enemy.gd" type="Script" id=1]
-[ext_resource path="res://images/enemy/enemy_Animation 1_0.png" type="Texture" id=2]
-[ext_resource path="res://images/enemy/enemy_Animation 1_1.png" type="Texture" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://enemySprint.gd" type="Script" id=1]
+[ext_resource path="res://images/enemySprint/enemySprint_Animation 2_0.png" type="Texture" id=2]
+[ext_resource path="res://images/enemySprint/enemySprint_Animation 2_1.png" type="Texture" id=3]
+[ext_resource path="res://images/enemySprint.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -16,11 +16,12 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.3009
 
-[node name="enemy" type="Area2D"]
+[node name="enemySprint" type="Area2D"]
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -31,7 +32,6 @@ texture = ExtResource( 4 )
 shape = SubResource( 1 )
 
 [node name="directionTimer" type="Timer" parent="."]
-wait_time = 10.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_enemy_body_entered"]

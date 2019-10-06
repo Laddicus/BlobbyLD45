@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/restartButton.png-161062498e0a432c148f3224d7560305.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://images/Tile_1.jpg"
+source_file="res://images/restartButton.png"
+dest_files=[ "res://.import/restartButton.png-161062498e0a432c148f3224d7560305.stex" ]
+
 [params]
 
 compress/mode=0

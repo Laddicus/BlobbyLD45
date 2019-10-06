@@ -1,25 +1,36 @@
 extends Node2D
-export (PackedScene) var Enemy
-var enemy_resource = preload("res://enemy.tscn")
-var enemy
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var enemyBasic_resource = preload("res://enemyBasic.tscn")
+var enemyBasic
+var enemyShoot_resource = preload("res://enemyShoot.tscn")
+var enemyShoot
+var enemySprint_resource = preload("res://enemySprint.tscn")
+var enemySprint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.start()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-
-func _on_Timer_timeout():
-	enemy = enemy_resource.instance()
-	var x = rand_range(0, 1250)
-	var y = rand_range(0, 1250)
-	enemy.set_position(Vector2(x,y))
-	self.add_child(enemy)
-	enemy.connect("hit", $player, "_on_enemy_hit")
+func _on_spawnTimer_timeout():
+	var type = randi()%4+1
+	if type == 1:
+		enemyBasic = enemyBasic_resource.instance()
+		var pos = $spawner.get_position()
+		enemyBasic.set_position(pos)
+		self.add_child(enemyBasic)
+		enemyBasic.connect("hit", $player, "_on_enemy_hit")
+	elif type == 2:
+		enemyShoot = enemyShoot_resource.instance()
+		var pos = $spawner.get_position()
+		enemyShoot.set_position(pos)
+		self.add_child(enemyShoot)
+		enemyShoot.connect("hit", $player, "_on_enemy_hit")
+	elif type == 3:
+		enemySprint = enemySprint_resource.instance()
+		var pos = $spawner.get_position()
+		enemySprint.set_position(pos)
+		self.add_child(enemySprint)
+		enemySprint.connect("hit", $player, "_on_enemy_hit")
